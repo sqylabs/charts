@@ -3,6 +3,29 @@ entries:
   code-server:
   - apiVersion: v2
     appVersion: 3.5.0-ls48
+    created: "2020-09-26T17:36:13.238909917Z"
+    description: A Helm chart for Visual Studio Code running in browser
+    digest: db2e67c7e0b990b79e00daa4000b3a1b693cbdc16fcd3c156d554bffb0a36edd
+    home: https://coder.com
+    keywords:
+    - Visual Studio Code
+    - Code OSS
+    - Code
+    - Browser IDE
+    maintainers:
+    - email: gokhun@gmail.com
+      name: gokhun
+      url: gokhun.dev
+    name: code-server
+    sources:
+    - https://github.com/cdr/code-server
+    - https://github.com/linuxserver/docker-code-server
+    type: application
+    urls:
+    - https://github.com/sqylabs/charts/releases/download/code-server-0.1.5/code-server-0.1.5.tgz
+    version: 0.1.5
+  - apiVersion: v2
+    appVersion: 3.5.0-ls48
     created: "2020-09-26T02:59:36.119582582Z"
     description: A Helm chart for Visual Studio Code running in browser
     digest: ce4746e3c3765756bbdd91bddaecc757e8fc8e3091e802cd91d53a534250bff5
