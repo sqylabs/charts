@@ -1,0 +1,118 @@
+{
+  "boot-java.change-detection.on": true,
+  "diffEditor.ignoreTrimWhitespace": true,
+  "editor.codeActionsOnSave": {
+    "source.generate.finalModifiers": true
+  },
+  "editor.cursorSmoothCaretAnimation": true,
+  "editor.cursorStyle": "underline",
+  "editor.fontFamily": "SF Mono, Monaco, 'Courier New', monospace",
+  "editor.fontLigatures": false,
+  "editor.fontSize": 12,
+  "editor.fontWeight": "normal",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.insertSpaces": false,
+  "editor.minimap.enabled": false,
+  "editor.renderWhitespace": "all",
+  "editor.rulers": [
+    120
+  ],
+  "editor.selectionClipboard": false,
+  "editor.suggestSelection": "first",
+  "editor.wordWrap": "on",
+  "fileHeaderComment.template": {
+    "*": [
+      "/*",
+      " * All Rights Reserved",
+      " *",
+      " * Copyright (c) ${year} SQYLABS",
+      " *",
+      " * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR",
+      " * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,",
+      " * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE",
+      " * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER",
+      " * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,",
+      " * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN",
+      " * THE SOFTWARE.",
+      " */"
+    ]
+  },
+  "files.autoSave": "afterDelay",
+  "files.eol": "\n",
+  "files.exclude": {
+    "**/.classpath": true,
+    "**/.factorypath": true,
+    "**/.project": true,
+    "**/.settings": true
+  },
+  "git.autofetch": true,
+  "git.decorations.enabled": true,
+  "gitlens.advanced.telemetry.enabled": false,
+  "java.codeGeneration.generateComments": true,
+  "java.codeGeneration.hashCodeEquals.useJava7Objects": true,
+  "java.codeGeneration.useBlocks": true,
+  "java.configuration.maven.userSettings": "{{ .Values.dirs.home }}/.m2/settings.xml",
+  "java.configuration.runtimes": [
+    {
+      "default": "true",
+      "javadoc": "{{ .Values.java.javadoc }}",
+      "name": "{{ .Values.java.name }}",
+      "path": "{{ .Values.dirs.home }}/.sdkman/candidates/java/current",
+      "sources": "{{ .Values.dirs.home  }}/.sdkman/candidates/java/current/lib/src.zip"
+    }
+  ],
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "java.debug.settings.showQualifiedNames": true,
+  "java.debug.settings.showStaticVariables": true,
+  "java.dependency.packagePresentation": "hierarchical",
+  "java.dependency.showMembers": true,
+  "java.format.settings.url": "https://raw.githubusercontent.com/ghokun/eclipse/master/format.xml",
+  "java.home": "{{ .Values.dirs.home }}/.sdkman/candidates/java/current",
+  "java.implementationsCodeLens.enabled": true,
+  "java.maven.downloadSources": true,
+  "java.project.importOnFirstTimeStartup": "automatic",
+  "java.referencesCodeLens.enabled": true,
+  "java.saveActions.organizeImports": true,
+  "java.signatureHelp.enabled": true,
+  "javascript.referencesCodeLens.enabled": true,
+  "javascript.referencesCodeLens.showOnAllFunctions": true,
+  "maven.executable.path": "{{ .Values.dirs.home }}/.sdkman/candidates/maven/current/bin/mvn",
+  "maven.view": "hierarchical",
+  "quarkus.tools.alwaysShowWelcomePage": false,
+  "sonarlint.disableTelemetry": true,
+  "sonarlint.ls.javaHome": "{{ .Values.dirs.home }}/.sdkman/candidates/java/current",
+  "spring-boot.ls.java.home": "{{ .Values.dirs.home }}/.sdkman/candidates/java/current",
+  "spring.initializr.defaultGroupId": "dev.sqylab",
+  "spring.initializr.defaultJavaVersion": "11",
+  "spring.initializr.defaultLanguage": "Java",
+  "spring.initializr.defaultPackaging": "JAR",
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.cursorStyle": "underline",
+  "terminal.integrated.fontSize": 12,
+  "terminal.integrated.shell.linux": "/bin/bash",
+  "typescript.implementationsCodeLens.enabled": true,
+  "typescript.referencesCodeLens.enabled": true,
+  "typescript.referencesCodeLens.showOnAllFunctions": true,
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "workbench.colorTheme": "GitHub Dark",
+  "workbench.iconTheme": "vscode-icontheme-nomo-dark-macos",
+  "workbench.sideBar.location": "left",
+  "workbench.startupEditor": "newUntitledFile",
+  "xml.codeLens.enabled": true,
+  "xml.fileAssociations": [
+    {
+      "pattern": "settings.xml",
+      "systemId": "http://maven.apache.org/xsd/settings-1.0.0.xsd"
+    },
+    {
+      "pattern": "pom.xml",
+      "systemId": "http://maven.apache.org/xsd/maven-4.0.0.xsd"
+    }
+  ],
+  "xml.format.joinCommentLines": true,
+  "xml.format.joinContentLines": true,
+  "xml.format.preserveEmptyContent": true,
+  "xml.format.splitAttributes": true,
+  "xml.java.home": "{{ .Values.dirs.home }}/.sdkman/candidates/java/current"
+}

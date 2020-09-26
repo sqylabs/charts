@@ -1,0 +1,104 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    {{- include "code-server.labels" . | nindent 4 }}
+  name: {{ include "code-server.fullname" . }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "code-server.selectorLabels" . | nindent 6 }}
+  serviceName: {{ include "code-server.fullname" . }}
+  template:
+    metadata:
+      labels:
+        {{- include "code-server.selectorLabels" . | nindent 8 }}
+    spec:
+      automountServiceAccountToken: false
+      containers:
+        - env:
+            - name: PGID
+              value: {{ .Values.statefulSet.env.pgid | quote }}
+            - name: PUID
+              value: {{ .Values.statefulSet.env.puid | quote }}
+            - name: TZ
+              value: {{ .Values.statefulSet.env.tz | quote }}
+            - name: PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "code-server.fullname" . }}
+                  key: password
+            - name: SUDO_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "code-server.fullname" . }}
+                  key: sudoPassword
+          image: {{ .Values.statefulSet.image }}
+          name: {{ include "code-server.fullname" . }}
+          ports:
+            - containerPort: 8443
+              name: code-server
+            {{- range .Values.extraEndpoints }}
+            - containerPort: {{ .containerPort }}
+              name: {{ .containerPortName }}
+            {{- end }}
+          {{- with .Values.statefulSet.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          volumeMounts:
+            - mountPath: {{ .Values.dirs.home }}
+              name: {{ include "code-server.name" . }}-home
+            - mountPath: {{ .Values.dirs.setup }}
+              name: setup-vol
+            - mountPath: {{ .Values.dirs.home }}/custom-cont-init.d
+              name: init-vol
+          readinessProbe:
+            tcpSocket:
+              port: 8443
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: 8443
+            initialDelaySeconds: 15
+            periodSeconds: 20
+      serviceAccountName: {{ include "code-server.serviceAccountName" . }}
+      volumes:
+        - name: setup-vol
+          configMap:
+            name: {{ include "code-server.fullname" . }}
+            items:
+              - key: extensions.csv
+                path: extensions.csv
+              - key: settings.json
+                path: settings.json
+              - key: settings.xml
+                path: settings.xml
+        - name: init-vol
+          configMap:
+            name: {{ include "code-server.fullname" . }}
+            items:
+              - key: init.sh
+                path: init.sh
+      {{- with .Values.statefulSet.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.statefulSet.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.statefulSet.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+  volumeClaimTemplates:
+    - metadata:
+        name: {{ include "code-server.name" . }}-home
+      spec:
+        {{- toYaml .Values.statefulSet.volumeClaim | nindent 8 }}
+        selector:
+          matchLabels:
+            {{- include "code-server.selectorLabels" . | nindent 12 }}

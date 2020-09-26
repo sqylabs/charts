@@ -1,0 +1,101 @@
+# Code Server Chart Values
+
+nameOverride: ""
+fullnameOverride: ""
+
+# Defeault directories that will be used by setup/init.sh
+# Do not change if you dont know what you are doing
+dirs:
+  home: /config
+  setup: /setup
+  download: /tmp/extensions
+  extensions: /config/extensions
+
+# This chart is geared towards java development
+# These values will be sent to sdkman
+# For a whole list head to https://sdkman.io/jdks
+# If you want to use this chart for other purpose modify setup/init.sh
+# Any command in that file will be run as root at the startup
+java:
+  name: JavaSE-11
+  version: 20.2.0.r11-grl
+  javadoc: https://docs.oracle.com/en/java/javase/11/docs/api
+
+# Values in setup/settings.xml will be populated using these
+nexus:
+  url: http://nexus.sqylabs.dev
+  username: username
+  password: password
+
+# Since development is done in a kubernetes environment one may need additional
+# endpoints to be forwarded. Example shows backend frontend pair. These values
+# will add extra ports to pod, service and path to ingress if enabled.
+extraEndpoints: []
+  # - host: api.sqylabs.dev
+  #   servicePort: 8080
+  #   servicePortName: api
+  #   containerPort: 8080
+  #   containerPortName: api
+  # - host: ui.sqylabs.dev
+  #   servicePort: 8081
+  #   servicePortName: ui
+  #   containerPort: 8081
+  #   containerPortName: ui
+
+# nginx ingress is used in example
+# Secret containing certificates need to be created manually
+ingress:
+  create: true
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # nginx.ingress.kubernetes.io/rewrite-target: /$1
+  host: code.sqylabs.dev
+  tls: []
+    # - hosts:
+    #     - "*.sqylabs.dev"
+    #   secretName: sqylabs-certs
+
+# Statefulset needs a persistent volume
+persistentVolume:
+  create: true
+  spec: {}
+    # accessModes: [ "ReadWriteOnce" ]
+    # capacity:
+    #   storage: 10Gi
+    # hostPath:
+    #   path: /home/gokhun/pvs/code
+
+service:
+  type: ClusterIP
+  port: 8443
+
+serviceAccount:
+  create: true
+  name: ""
+
+# These are passwords of abc user which is the default user
+secret:
+  password: password
+  sudoPassword:  password
+
+statefulSet:
+  env:
+    pgid: 1000
+    puid: 1000
+    tz: Europe/Istanbul
+  image: "linuxserver/code-server:v3.5.0-ls48"
+  resources: {}
+    # requests:
+    #   cpu: 2000m
+    #   memory: 4096Mi
+    # limits:
+    #   cpu: 2000m
+    #   memory: 4096Mi
+  volumeClaim: {}
+    # accessModes: [ "ReadWriteOnce" ]
+    # resources:
+    #   requests:
+    #     storage: 10Gi
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}

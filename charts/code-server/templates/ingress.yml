@@ -1,0 +1,35 @@
+{{- if .Values.ingress.create -}}
+{{- $svcName := include "code-server.fullname" . -}}
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  {{- with .Values.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  labels:
+    {{- include "code-server.labels" . | nindent 4 }}
+  name: {{ include "code-server.fullname" . }}
+spec:
+  rules:
+    - host: {{ .Values.ingress.host }}
+      http:
+        paths:
+          - backend:
+              serviceName: {{ $svcName }}
+              servicePort: code-server
+            path: /(.*)
+    {{- range .Values.extraEndpoints }}
+    - host: {{ .host }}
+      http:
+        paths:
+          - backend:
+              serviceName: {{ $svcName }}
+              servicePort: {{ .servicePortName }}
+            path: /(.*)
+    {{- end }}
+  {{- with .Values.ingress.tls }}
+  tls:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+{{- end }}

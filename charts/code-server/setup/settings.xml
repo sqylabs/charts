@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings
+    xmlns="http://maven.apache.org/SETTINGS/1.1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd">
+  <mirrors>
+    <mirror>
+      <id>nexus</id>
+      <mirrorOf>*</mirrorOf>
+      <url>{{ .Values.nexus.url }}</url>
+    </mirror>
+  </mirrors>
+  <servers>
+    <server>
+      <id>nexus</id>
+      <username>{{ .Values.nexus.username }}</username>
+      <password>{{ .Values.nexus.password }}</password>
+    </server>
+    <server>
+      <id>maven-releases</id>
+      <username>{{ .Values.nexus.username }}</username>
+      <password>{{ .Values.nexus.password }}</password>
+    </server>
+    <server>
+      <id>maven-snapshots</id>
+      <username>{{ .Values.nexus.username }}</username>
+      <password>{{ .Values.nexus.password }}</password>
+    </server>
+  </servers>
+</settings>
