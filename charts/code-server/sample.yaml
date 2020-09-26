@@ -1,0 +1,86 @@
+nameOverride: ""
+fullnameOverride: ""
+
+dirs:
+  home: /config
+  setup: /setup
+  download: /tmp/extensions
+  extensions: /config/extensions
+
+java:
+  name: JavaSE-11
+  version: 20.2.0.r11-grl
+  javadoc: https://docs.oracle.com/en/java/javase/11/docs/api
+
+nexus:
+  url: http://nexus.sqylabs.dev
+  username: username
+  password: password
+
+extraEndpoints:
+  - host: api.sqylabs.dev
+    servicePort: 8080
+    servicePortName: api
+    containerPort: 8080
+    containerPortName: api
+  - host: ui.sqylabs.dev
+    servicePort: 8081
+    servicePortName: ui
+    containerPort: 8081
+    containerPortName: ui
+
+ingress:
+  create: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+  host: code.sqylabs.dev
+  tls:
+    - hosts:
+        - "*.sqylabs.dev"
+      secretName: sqylabs-certs
+
+persistentVolume:
+  create: true
+  spec:
+    accessModes: ["ReadWriteOnce"]
+    capacity:
+      storage: 10Gi
+    hostPath:
+      path: /home/gokhun/pvs/code
+
+service:
+  type: ClusterIP
+  port: 8443
+
+serviceAccount:
+  create: true
+  name: ""
+
+secret:
+  password: password
+  sudoPassword: password
+
+statefulSet:
+  env:
+    pgid: 1000
+    puid: 1000
+    tz: Europe/Istanbul
+    password: password
+    sudoPassword: password
+  image: "linuxserver/code-server:v3.5.0-ls48"
+  resources:
+    requests:
+      cpu: 2000m
+      memory: 4096Mi
+    limits:
+      cpu: 2000m
+      memory: 4096Mi
+  volumeClaim:
+    accessModes: ["ReadWriteOnce"]
+    resources:
+      requests:
+        storage: 10Gi
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
