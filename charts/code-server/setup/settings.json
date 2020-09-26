@@ -79,6 +79,7 @@
   "javascript.referencesCodeLens.showOnAllFunctions": true,
   "maven.executable.path": "{{ .Values.dirs.home }}/.sdkman/candidates/maven/current/bin/mvn",
   "maven.view": "hierarchical",
+  "maven.terminal.useJavaHome": true,
   "quarkus.tools.alwaysShowWelcomePage": false,
   "sonarlint.disableTelemetry": true,
   "sonarlint.ls.javaHome": "{{ .Values.dirs.home }}/.sdkman/candidates/java/current",
