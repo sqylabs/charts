@@ -1,0 +1,35 @@
+# Nexus Chart Values
+
+nameOverride: ""
+fullnameOverride: ""
+
+ingress:
+  create: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+  host: nexus.sqylabs.dev
+  dockerHost: docker.sqylabs.dev
+  tls: []
+    # - hosts:
+    #     - "*.sqylabs.dev"
+    #   secretName: sqylabs-certs
+
+# Statefulset needs a persistent volume
+persistentVolume:
+  create: false
+  spec: {}
+    # accessModes: [ "ReadWriteOnce" ]
+    # capacity:
+    #   storage: 10Gi
+    # hostPath:
+    #   path: /home/gokhun/pvs/code
+
+service:
+  type: ClusterIP
+  port: 8080
+  dockerPort: 8081
+
+serviceAccount:
+  create: true
+  name: ""

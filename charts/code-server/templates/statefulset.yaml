@@ -54,18 +54,12 @@ spec:
               name: setup-vol
             - mountPath: {{ .Values.dirs.home }}/custom-cont-init.d
               name: init-vol
-          readinessProbe:
-            tcpSocket:
-              port: 8443
-            initialDelaySeconds: 5
-            periodSeconds: 10
-          livenessProbe:
-            tcpSocket:
-              port: 8443
-            initialDelaySeconds: 15
-            periodSeconds: 20
       serviceAccountName: {{ include "code-server.serviceAccountName" . }}
       volumes:
+        {{- if not .Values.persistentVolume.create }}
+        - name: {{ include "code-server.name" . }}-home
+          emptyDir: {}
+        {{- end }}
         - name: setup-vol
           configMap:
             name: {{ include "code-server.fullname" . }}
@@ -94,6 +88,7 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+  {{- if .Values.persistentVolume.create }}
   volumeClaimTemplates:
     - metadata:
         name: {{ include "code-server.name" . }}-home
@@ -102,3 +97,4 @@ spec:
         selector:
           matchLabels:
             {{- include "code-server.selectorLabels" . | nindent 12 }}
+  {{- end }}

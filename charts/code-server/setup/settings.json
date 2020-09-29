@@ -21,23 +21,6 @@
   "editor.selectionClipboard": false,
   "editor.suggestSelection": "first",
   "editor.wordWrap": "on",
-  "fileHeaderComment.template": {
-    "*": [
-      "/*",
-      " * All Rights Reserved",
-      " *",
-      " * Copyright (c) ${year} SQYLABS",
-      " *",
-      " * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR",
-      " * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,",
-      " * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE",
-      " * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER",
-      " * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,",
-      " * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN",
-      " * THE SOFTWARE.",
-      " */"
-    ]
-  },
   "files.autoSave": "afterDelay",
   "files.eol": "\n",
   "files.exclude": {
@@ -78,8 +61,27 @@
   "javascript.referencesCodeLens.enabled": true,
   "javascript.referencesCodeLens.showOnAllFunctions": true,
   "maven.executable.path": "{{ .Values.dirs.home }}/.sdkman/candidates/maven/current/bin/mvn",
-  "maven.view": "hierarchical",
   "maven.terminal.useJavaHome": true,
+  "maven.view": "hierarchical",
+  "psi-header.changes-tracking.autoHeader": "autoSave",
+  "psi-header.templates": [
+    {
+      "language": "java",
+      "template": [
+        "All Rights Reserved",
+        "",
+        "Copyright (c) <<year>> SQYLABS",
+        "",
+        "THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR",
+        "IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,",
+        "FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE",
+        "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER",
+        "LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,",
+        "OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN",
+        "THE SOFTWARE."
+      ]
+    }
+  ],
   "quarkus.tools.alwaysShowWelcomePage": false,
   "sonarlint.disableTelemetry": true,
   "sonarlint.ls.javaHome": "{{ .Values.dirs.home }}/.sdkman/candidates/java/current",

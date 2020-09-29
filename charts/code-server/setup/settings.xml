@@ -7,7 +7,7 @@
     <mirror>
       <id>nexus</id>
       <mirrorOf>*</mirrorOf>
-      <url>{{ .Values.nexus.url }}</url>
+      <url>{{ .Values.nexus.url }}/repository/maven-public/</url>
     </mirror>
   </mirrors>
   <servers>

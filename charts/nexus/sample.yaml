@@ -1,0 +1,50 @@
+nameOverride: ""
+fullnameOverride: ""
+
+ingress:
+  create: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+  host: nexus.sqylabs.dev
+  dockerHost: docker.sqylabs.dev
+  tls:
+    - hosts:
+        - "*.sqylabs.dev"
+      secretName: sqylabs-certs
+
+persistentVolume:
+  create: true
+  spec:
+    accessModes: ["ReadWriteOnce"]
+    capacity:
+      storage: 10Gi
+    hostPath:
+      path: /home/gokhun/pvs/nexus
+
+service:
+  type: ClusterIP
+  port: 8081
+  dockerPort: 8082
+
+serviceAccount:
+  create: true
+  name: ""
+
+statefulSet:
+  image: "sonatype/nexus3:3.27.0"
+  resources:
+    requests:
+      cpu: 2000m
+      memory: 4096Mi
+    limits:
+      cpu: 2000m
+      memory: 4096Mi
+  volumeClaim:
+    accessModes: ["ReadWriteOnce"]
+    resources:
+      requests:
+        storage: 10Gi
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}

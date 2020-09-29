@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    {{- include "nexus.labels" . | nindent 4 }}
+  name: {{ include "nexus.fullname" . }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "nexus.selectorLabels" . | nindent 6 }}
+  serviceName: {{ include "nexus.fullname" . }}
+  template:
+    metadata:
+      labels:
+        {{- include "nexus.selectorLabels" . | nindent 8 }}
+    spec:
+      automountServiceAccountToken: false
+      containers:
+        - image: {{ .Values.statefulSet.image }}
+          name: {{ include "nexus.fullname" . }}
+          ports:
+            - containerPort: 8081
+              name: nexus
+            - containerPort: 8082
+              name: docker
+          {{- with .Values.statefulSet.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          volumeMounts:
+            - mountPath: /nexus-data
+              name: {{ include "nexus.name" . }}-home
+      serviceAccountName: {{ include "nexus.serviceAccountName" . }}
+      {{- if .Values.persistentVolume.create }}
+      volumes:
+        - name: {{ include "nexus.name" . }}-home
+          emptyDir: {}
+      {{- end }}
+      {{- with .Values.statefulSet.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.statefulSet.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.statefulSet.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+  {{- if .Values.persistentVolume.create }}
+  volumeClaimTemplates:
+    - metadata:
+        name: {{ include "nexus.name" . }}-home
+      spec:
+        {{- toYaml .Values.statefulSet.volumeClaim | nindent 8 }}
+        selector:
+          matchLabels:
+            {{- include "nexus.selectorLabels" . | nindent 12 }}
+  {{- end }}
