@@ -96,6 +96,30 @@ entries:
   nexus:
   - apiVersion: v2
     appVersion: 3.27.0
+    created: "2020-09-29T22:18:55.961007133Z"
+    description: A Helm chart for Sonatype Nexus
+    digest: b60008c0f448fde1809e2192b7adfa5bb01a446a7eee054250b548e88f2b445d
+    home: https://www.sonatype.com/nexus/repository-oss
+    keywords:
+    - artifacts
+    - dependency
+    - management
+    - sonatype
+    - nexus
+    - repository
+    maintainers:
+    - email: gokhun@gmail.com
+      name: gokhun
+      url: gokhun.dev
+    name: nexus
+    sources:
+    - https://github.com/sonatype/nexus-public
+    type: application
+    urls:
+    - https://github.com/sqylabs/charts/releases/download/nexus-0.1.1/nexus-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 3.27.0
     created: "2020-09-29T22:13:25.333044887Z"
     description: A Helm chart for Sonatype Nexus
     digest: 926cd1cccaed4b1acbe3edc96a7cfb0f5e7fe1a1c17bf1f534e9ce0de9f7ba46
