@@ -17,7 +17,7 @@ spec:
     spec:
       automountServiceAccountToken: false
       containers:
-        - image: {{ .Values.statefulSet.image }}
+        - image: {{ .Values.statefulSet.image }}:{{ .Chart.AppVersion }}
           name: {{ include "nexus.fullname" . }}
           ports:
             - containerPort: 8081

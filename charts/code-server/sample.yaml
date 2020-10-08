@@ -14,7 +14,7 @@ java:
 
 nexus:
   url: http://nexus.sqylabs:8081
-  username: username
+  username: admin
   password: password
 
 extraEndpoints:
@@ -68,14 +68,14 @@ statefulSet:
     tz: Europe/Istanbul
     password: password
     sudoPassword: password
-  image: "linuxserver/code-server:v3.5.0-ls48"
+  image: "linuxserver/code-server"
   resources:
     requests:
       cpu: 2000m
-      memory: 4096Mi
+      memory: 6144Mi
     limits:
       cpu: 2000m
-      memory: 4096Mi
+      memory: 6144Mi
   volumeClaim:
     accessModes: ["ReadWriteOnce"]
     resources:

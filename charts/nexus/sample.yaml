@@ -32,7 +32,7 @@ serviceAccount:
   name: ""
 
 statefulSet:
-  image: "sonatype/nexus3:3.27.0"
+  image: "sonatype/nexus3"
   resources:
     requests:
       cpu: 2000m

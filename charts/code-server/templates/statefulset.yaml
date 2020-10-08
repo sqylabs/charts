@@ -34,7 +34,7 @@ spec:
                 secretKeyRef:
                   name: {{ include "code-server.fullname" . }}
                   key: sudoPassword
-          image: {{ .Values.statefulSet.image }}
+          image: {{ .Values.statefulSet.image }}:{{ .Chart.AppVersion }}
           name: {{ include "code-server.fullname" . }}
           ports:
             - containerPort: 8443

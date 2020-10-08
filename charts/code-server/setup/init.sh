@@ -12,7 +12,8 @@ echo "[ Setting extension installation directory: $EXTENSIONS_DIR ]"
 echo "[ Installing dependencies ]"
 DEBIAN_FRONTEND=noninteractive \
   apt-get update \
-  && apt-get install -qq -y --no-install-recommends zip unzip wget \
+  && apt-get install -qq -y --no-install-recommends \
+     zip unzip wget build-essential libz-dev zlib1g-dev \
   && rm -rf /tmp/* \
   && rm -rf /var/lib/apt/lists/*
 
