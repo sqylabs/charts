@@ -1,8 +1,8 @@
 apiVersion: v2
 name: code-server
-version: 0.2.0
+version: 0.2.1
 type: application
-appVersion: 3.5.0-ls49
+appVersion: v3.5.0-ls49
 description: A Helm chart for Visual Studio Code running in browser
 home: 'https://coder.com'
 keywords:
