@@ -1,0 +1,17 @@
+apiVersion: v2
+name: postgres
+version: 0.1.0
+type: application
+appVersion: 13.0-alpine
+description: A Helm chart for PostgreSQL database
+home: 'https://www.postgresql.org/'
+keywords:
+  - Database
+  - SQL
+  - PostgreSQL
+maintainers:
+  - email: gokhun@gmail.com
+    name: gokhun
+    url: gokhun.dev
+sources:
+  - 'https://github.com/docker-library/postgres'

@@ -1,0 +1,90 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    {{- include "postgres.labels" . | nindent 4 }}
+  name: {{ include "postgres.fullname" . }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "postgres.selectorLabels" . | nindent 6 }}
+  serviceName: {{ include "postgres.fullname" . }}
+  template:
+    metadata:
+      labels:
+        {{- include "postgres.selectorLabels" . | nindent 8 }}
+    spec:
+      automountServiceAccountToken: false
+      containers:
+        - image: {{ .Values.statefulSet.image }}:{{ .Chart.AppVersion }}
+          name: {{ include "postgres.fullname" . }}
+          env:
+            - name: PGDATA
+              value: "/var/lib/postgresql/data/pgdata"
+            - name: POSTGRES_USER
+              value: {{ .Values.postgres.user }}
+            - name: POSTGRES_PASSWORD
+              value: {{ .Values.postgres.password }}
+            - name: PGPASSWORD
+              value: {{ .Values.postgres.password }}
+            - name: POSTGRES_MULTIPLE_DATABASES
+              value: "phosphate,keycloak"
+          readinessProbe:
+            exec:
+              command:
+                ["psql", "-U", "{{ .Values.postgres.user }}", "-d", "postgres", "-c", "SELECT 1"]
+            initialDelaySeconds: 15
+            timeoutSeconds: 2
+          livenessProbe:
+            exec:
+              command:
+                ["psql", "-U", "{{ .Values.postgres.user }}", "-d", "postgres", "-c", "SELECT 1"]
+            initialDelaySeconds: 45
+            timeoutSeconds: 2
+          ports:
+            - containerPort: 5432
+              name: postgres
+          {{- with .Values.statefulSet.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: {{ include "postgres.name" . }}-home
+            - mountPath: /docker-entrypoint-initdb.d
+              name: {{ include "postgres.name" . }}-initdb
+      serviceAccountName: {{ include "postgres.serviceAccountName" . }}
+      volumes:
+      {{- if not .Values.persistentVolume.create }}
+        - name: {{ include "postgres.name" . }}-home
+          emptyDir: {}
+      {{- end }}
+        - name: {{ include "postgres.name" . }}-initdb
+          configMap:
+            name: {{ include "postgres.fullname" . }}
+            items:
+              - key: init.sh
+                path: init.sh
+      {{- with .Values.statefulSet.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.statefulSet.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.statefulSet.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+  {{- if .Values.persistentVolume.create }}
+  volumeClaimTemplates:
+    - metadata:
+        name: {{ include "postgres.name" . }}-home
+      spec:
+        {{- toYaml .Values.statefulSet.volumeClaim | nindent 8 }}
+        selector:
+          matchLabels:
+            {{- include "postgres.selectorLabels" . | nindent 12 }}
+  {{- end }}

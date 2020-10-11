@@ -83,6 +83,41 @@ echo "[ Setting maven settings.xml ]"
 mkdir -p $HOME_DIR/.m2
 cp $SETUP_DIR/settings.xml $HOME_DIR/.m2/settings.xml
 
+echo "[ Installing kubectl ]"
+curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+chmod +x ./kubectl
+mv ./kubectl /usr/local/bin/kubectl
+kubectl version --client
+
+echo "[ Creating kubeconfig ]"
+mkdir -p $HOME_DIR/.kube
+TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
+CLUSTER_NAME=microk8s-cluster
+CLUSTER_USER={{ include "code-server.serviceAccountName" . }}-{{ .Release.Namespace }}-$CLUSTER_NAME
+kubectl config set-cluster $CLUSTER_NAME --kubeconfig=$HOME_DIR/.kube/config \
+  --server=https://kubernetes.default.svc \
+  --certificate-authority=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt \
+  --embed-certs=true
+kubectl config set-context microk8s \
+  --kubeconfig=$HOME_DIR/.kube/config --cluster=$CLUSTER_NAME \
+  --user=$CLUSTER_USER \
+  --namespace={{ .Release.Namespace }}
+kubectl config set-credentials $CLUSTER_USER \
+  --kubeconfig=$HOME_DIR/.kube/config --token=$TOKEN
+kubectl config use-context microk8s
+chmod 600 $HOME_DIR/.kube/config
+
+echo "[ Installing helm ]"
+curl https://baltocdn.com/helm/signing.asc | apt-key add -
+DEBIAN_FRONTEND=noninteractive \
+  apt-get install apt-transport-https --yes
+echo "deb https://baltocdn.com/helm/stable/debian/ all main" | tee /etc/apt/sources.list.d/helm-stable-debian.list
+DEBIAN_FRONTEND=noninteractive \
+  apt-get update \
+  && apt-get install helm -y \
+  && rm -rf /tmp/* \
+  && rm -rf /var/lib/apt/lists/*
+
 # Set settings.json
 echo "[ Setting code-server settings.json ]"
 mkdir -p $HOME_DIR/data/User

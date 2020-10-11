@@ -32,7 +32,7 @@ spec:
             - mountPath: /nexus-data
               name: {{ include "nexus.name" . }}-home
       serviceAccountName: {{ include "nexus.serviceAccountName" . }}
-      {{- if .Values.persistentVolume.create }}
+      {{- if not .Values.persistentVolume.create }}
       volumes:
         - name: {{ include "nexus.name" . }}-home
           emptyDir: {}

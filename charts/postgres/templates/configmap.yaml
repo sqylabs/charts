@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    {{- include "postgres.labels" . | nindent 4 }}
+  name: {{ include "postgres.fullname" . }}
+data:
+{{- range $path, $_ := (.Files.Glob "initdb/*") }}
+  {{- trimPrefix "initdb/" $path | nindent 2 }}: |-
+    {{- tpl ($.Files.Get $path) $ | nindent 4 }}
+{{- end }}

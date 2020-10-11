@@ -1,0 +1,45 @@
+# PostgreSQL Chart Values
+
+nameOverride: ""
+fullnameOverride: ""
+
+postgres:
+  user: postgres
+  password: postgres
+
+# Statefulset needs a persistent volume
+persistentVolume:
+  create: true
+  spec:
+    accessModes: ["ReadWriteOnce"]
+    capacity:
+      storage: 10Gi
+    hostPath:
+      path: /home/gokhun/pvs/postgres
+
+service:
+  type: LoadBalancer
+  port: 5432
+  loadBalancerIP: 192.168.0.203
+
+serviceAccount:
+  create: true
+  name: ""
+
+statefulSet:
+  image: "postgres"
+  resources:
+    requests:
+      cpu: 500m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 1024Mi
+  volumeClaim:
+    accessModes: ["ReadWriteOnce"]
+    resources:
+      requests:
+        storage: 10Gi
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}

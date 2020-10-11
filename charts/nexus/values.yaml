@@ -33,3 +33,21 @@ service:
 serviceAccount:
   create: true
   name: ""
+
+statefulSet:
+  image: "sonatype/nexus3"
+  resources: {}
+    # requests:
+    #   cpu: 2000m
+    #   memory: 4096Mi
+    # limits:
+    #   cpu: 2000m
+    #   memory: 4096Mi
+  volumeClaim: {}
+    # accessModes: ["ReadWriteOnce"]
+    # resources:
+    #   requests:
+    #     storage: 10Gi
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
