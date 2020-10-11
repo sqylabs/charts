@@ -3,6 +3,29 @@ entries:
   code-server:
   - apiVersion: v2
     appVersion: v3.5.0-ls49
+    created: "2020-10-11T13:19:18.278099388Z"
+    description: A Helm chart for Visual Studio Code running in browser
+    digest: d8113778919e52b6c218ab6bdefec054a680543552fcd5baf78fc5326a7f6f61
+    home: https://coder.com
+    keywords:
+    - Visual Studio Code
+    - Code OSS
+    - Code
+    - Browser IDE
+    maintainers:
+    - email: gokhun@gmail.com
+      name: gokhun
+      url: gokhun.dev
+    name: code-server
+    sources:
+    - https://github.com/cdr/code-server
+    - https://github.com/linuxserver/docker-code-server
+    type: application
+    urls:
+    - https://github.com/sqylabs/charts/releases/download/code-server-0.3.0/code-server-0.3.0.tgz
+    version: 0.3.0
+  - apiVersion: v2
+    appVersion: v3.5.0-ls49
     created: "2020-10-08T10:03:58.936504334Z"
     description: A Helm chart for Visual Studio Code running in browser
     digest: 84f384c67986ef045c85bb4c8b0fb6f58e99a7431f217443fa6f34b8cbb38d91
@@ -142,6 +165,30 @@ entries:
   nexus:
   - apiVersion: v2
     appVersion: 3.28.0
+    created: "2020-10-11T13:19:18.36983178Z"
+    description: A Helm chart for Sonatype Nexus
+    digest: 5af374382d30df6e935fbf611bfe419fbed11a612893c589f277aac24f5ad512
+    home: https://www.sonatype.com/nexus/repository-oss
+    keywords:
+    - artifacts
+    - dependency
+    - management
+    - sonatype
+    - nexus
+    - repository
+    maintainers:
+    - email: gokhun@gmail.com
+      name: gokhun
+      url: gokhun.dev
+    name: nexus
+    sources:
+    - https://github.com/sonatype/nexus-public
+    type: application
+    urls:
+    - https://github.com/sqylabs/charts/releases/download/nexus-0.2.1/nexus-0.2.1.tgz
+    version: 0.2.1
+  - apiVersion: v2
+    appVersion: 3.28.0
     created: "2020-10-08T09:55:40.537641038Z"
     description: A Helm chart for Sonatype Nexus
     digest: eac04bc66985a65e15b6b55a4d1621707e99c9c04600192929ec1110b94c3cbc
@@ -211,5 +258,27 @@ entries:
     type: application
     urls:
     - https://github.com/sqylabs/charts/releases/download/nexus-0.1.0/nexus-0.1.0.tgz
+    version: 0.1.0
+  postgres:
+  - apiVersion: v2
+    appVersion: 13.0-alpine
+    created: "2020-10-11T13:19:18.483094671Z"
+    description: A Helm chart for PostgreSQL database
+    digest: 9756d5f36816723549a064b8cbcb0665a8b650e148ae4f3c3f55850d1ff84df3
+    home: https://www.postgresql.org/
+    keywords:
+    - Database
+    - SQL
+    - PostgreSQL
+    maintainers:
+    - email: gokhun@gmail.com
+      name: gokhun
+      url: gokhun.dev
+    name: postgres
+    sources:
+    - https://github.com/docker-library/postgres
+    type: application
+    urls:
+    - https://github.com/sqylabs/charts/releases/download/postgres-0.1.0/postgres-0.1.0.tgz
     version: 0.1.0
 generated: "2020-09-26T02:45:56.241473686Z"
