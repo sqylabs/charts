@@ -44,6 +44,24 @@ spec:
               name: {{ .containerPortName }}
             {{- end }}
           {{- with .Values.statefulSet.resources }}
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: code-server
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 30
+            failureThreshold: 20
+            successThreshold: 1
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: code-server
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 30
+            failureThreshold: 20
+            successThreshold: 1
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}

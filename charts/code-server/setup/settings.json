@@ -87,6 +87,11 @@
   "sonarlint.disableTelemetry": true,
   "sonarlint.ls.javaHome": "{{ .Values.dirs.home }}/.sdkman/candidates/java/current",
   "spring-boot.ls.java.home": "{{ .Values.dirs.home }}/.sdkman/candidates/java/current",
+  "sonarlint.rules": {
+    "java:S3252": {
+      "level": "off"
+    }
+  },
   "spring.initializr.defaultGroupId": "dev.sqylab",
   "spring.initializr.defaultJavaVersion": "11",
   "spring.initializr.defaultLanguage": "Java",
