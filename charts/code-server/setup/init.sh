@@ -13,7 +13,7 @@ echo "[ Installing dependencies ]"
 DEBIAN_FRONTEND=noninteractive \
   apt-get update \
   && apt-get install -qq -y --no-install-recommends \
-     zip unzip wget build-essential libz-dev zlib1g-dev \
+     zip unzip wget build-essential libz-dev zlib1g-dev ruby-full \
   && rm -rf /tmp/* \
   && rm -rf /var/lib/apt/lists/*
 
@@ -122,6 +122,11 @@ DEBIAN_FRONTEND=noninteractive \
 echo "[ Setting code-server settings.json ]"
 mkdir -p $HOME_DIR/data/User
 cp $SETUP_DIR/settings.json $HOME_DIR/data/User/settings.json
+
+echo "[ Setting gem path ]"
+echo '# Install Ruby Gems to ~/gems' >> $HOME_DIR/.bashrc
+echo 'export GEM_HOME="$HOME/gems"' >> $HOME_DIR/.bashrc
+echo 'export PATH="$HOME/gems/bin:$PATH"' >> $HOME_DIR/.bashrc
 
 # Set permissions
 echo "[ Setting permissions on home folder ]"

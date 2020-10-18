@@ -1,11 +1,11 @@
-vscjava,vscode-java-debug,0.28.0
+vscjava,vscode-java-debug,0.29.0
 alphabotsec,vscode-eclipse-keybindings,0.12.0
 psioniq,psi-header,1.14.1
 GitHub,github-vscode-theme,1.1.5
 eamodio,gitlens,10.2.2
 golang,Go,0.17.2
 vscjava,vscode-java-test,0.24.2
-redhat,java,0.67.0
+redhat,java,0.69.0
 vscjava,vscode-maven,0.24.2
 Gaulomatic,vscode-icontheme-nomo-dark-macos,1.0.3
 vscjava,vscode-java-dependency,0.13.0
@@ -18,7 +18,8 @@ VisualStudioExptTeam,vscodeintellicode,1.2.10
 redhat,vscode-xml,0.13.0
 redhat,vscode-yaml,0.11.1
 SonarSource,sonarlint-vscode,1.17.0
-pascalreitermann93,vscode-yaml-sort,2.6.0
+pascalreitermann93,vscode-yaml-sort,2.7.0
 mechatroner,rainbow-csv,1.7.1
 redhat,vscode-microprofile,0.1.1
 ms-kubernetes-tools,vscode-kubernetes-tools,1.2.1
+editorconfig,editorconfig,0.15.1
