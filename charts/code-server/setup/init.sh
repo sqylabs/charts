@@ -55,6 +55,11 @@ echo "[ Installing oh-my-bash ]"
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
 sed -i 's/OSH_THEME="font"/OSH_THEME="roderik"/g' $HOME_DIR/.bashrc
 
+echo "[ Setting gem path ]"
+echo '# Install Ruby Gems to ~/gems' >> $HOME_DIR/.bashrc
+echo 'export GEM_HOME="$HOME/gems"' >> $HOME_DIR/.bashrc
+echo 'export PATH="$HOME/gems/bin:$PATH"' >> $HOME_DIR/.bashrc
+
 # Install sdkman
 curl -s "https://get.sdkman.io" | bash
 source "$HOME_DIR/.sdkman/bin/sdkman-init.sh"
@@ -122,11 +127,6 @@ DEBIAN_FRONTEND=noninteractive \
 echo "[ Setting code-server settings.json ]"
 mkdir -p $HOME_DIR/data/User
 cp $SETUP_DIR/settings.json $HOME_DIR/data/User/settings.json
-
-echo "[ Setting gem path ]"
-echo '# Install Ruby Gems to ~/gems' >> $HOME_DIR/.bashrc
-echo 'export GEM_HOME="$HOME/gems"' >> $HOME_DIR/.bashrc
-echo 'export PATH="$HOME/gems/bin:$PATH"' >> $HOME_DIR/.bashrc
 
 # Set permissions
 echo "[ Setting permissions on home folder ]"
