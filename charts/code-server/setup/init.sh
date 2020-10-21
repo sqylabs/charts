@@ -13,7 +13,7 @@ echo "[ Installing dependencies ]"
 DEBIAN_FRONTEND=noninteractive \
   apt-get update \
   && apt-get install -qq -y --no-install-recommends \
-     zip unzip wget build-essential libz-dev zlib1g-dev ruby-full \
+     zip unzip wget build-essential libz-dev zlib1g-dev \
   && rm -rf /tmp/* \
   && rm -rf /var/lib/apt/lists/*
 
@@ -54,11 +54,6 @@ done < <(grep "" $SETUP_DIR/extensions.csv)
 echo "[ Installing oh-my-bash ]"
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
 sed -i 's/OSH_THEME="font"/OSH_THEME="roderik"/g' $HOME_DIR/.bashrc
-
-echo "[ Setting gem path ]"
-echo '# Install Ruby Gems to ~/gems' >> $HOME_DIR/.bashrc
-echo 'export GEM_HOME="$HOME/gems"' >> $HOME_DIR/.bashrc
-echo 'export PATH="$HOME/gems/bin:$PATH"' >> $HOME_DIR/.bashrc
 
 # Install sdkman
 curl -s "https://get.sdkman.io" | bash
@@ -122,6 +117,20 @@ DEBIAN_FRONTEND=noninteractive \
   && apt-get install helm -y \
   && rm -rf /tmp/* \
   && rm -rf /var/lib/apt/lists/*
+
+echo "[ Installing go ]"
+[ -z "$GOROOT" ] && GOROOT="$HOME_DIR/.go"
+[ -z "$GOPATH" ] && GOPATH="$HOME_DIR/go"
+if [ -d "$GOROOT" ]; then
+    echo "[ The Go install directory ($GOROOT) already exists, skipping. ]"
+else
+mkdir -p $GOROOT
+mkdir -p $GOPATH
+GO_DOWNLOAD=https://golang.org/dl/go{{ .Values.go.version }}.linux-amd64.tar.gz
+wget $GO_DOWNLOAD
+tar -C $GOROOT -xzf go{{ .Values.go.version }}.linux-amd64.tar.gz --strip-components=1
+rm -rf go{{ .Values.go.version }}.linux-amd64.tar.gz
+fi
 
 # Set settings.json
 echo "[ Setting code-server settings.json ]"

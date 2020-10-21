@@ -21,6 +21,9 @@ java:
   version: 20.2.0.r11-grl
   javadoc: https://docs.oracle.com/en/java/javase/11/docs/api
 
+go:
+  version: 1.15.3
+
 # Values in setup/settings.xml will be populated using these
 nexus:
   url: http://nexus.sqylabs:8081

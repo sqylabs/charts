@@ -12,6 +12,9 @@ java:
   version: 20.2.0.r11-grl
   javadoc: https://docs.oracle.com/en/java/javase/11/docs/api
 
+go:
+  version: 1.15.3
+
 nexus:
   url: http://my-nexus.sqylabs:8081
   username: admin
@@ -39,7 +42,7 @@ ingress:
       proxy_set_header Connection upgrade;
       proxy_set_header Accept-Encoding gzip;
       proxy_set_header Host $host;
-      sub_filter '</head>' '<link type="text/css" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet"></head>';
+      sub_filter '</head>' '<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=IBM+Plex+Mono&family=Roboto+Mono&family=Source+Code+Pro&display=swap" rel="stylesheet"></head>';
       sub_filter 'font-src' 'font-src fonts.gstatic.com';
       sub_filter 'style-src' 'style-src fonts.googleapis.com';
       sub_filter_once on;

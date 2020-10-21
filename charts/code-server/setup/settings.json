@@ -1,4 +1,16 @@
 {
+  "[java]": {
+    "editor.insertSpaces": false,
+    "editor.tabSize": 4
+  },
+  "[json]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2
+  },
+  "[yaml]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2
+  },
   "boot-java.change-detection.on": true,
   "diffEditor.ignoreTrimWhitespace": true,
   "editor.codeActionsOnSave": {
@@ -6,7 +18,7 @@
   },
   "editor.cursorSmoothCaretAnimation": true,
   "editor.cursorStyle": "underline",
-  "editor.fontFamily": "SF Mono, Monaco, 'Courier New', monospace",
+  "editor.fontFamily": "Roboto Mono, 'Courier New', monospace",
   "editor.fontLigatures": false,
   "editor.fontSize": 12,
   "editor.fontWeight": "normal",
@@ -32,6 +44,15 @@
   "git.autofetch": true,
   "git.decorations.enabled": true,
   "gitlens.advanced.telemetry.enabled": false,
+  "go.autocompleteUnimportedPackages": true,
+  "go.enableCodeLens": {
+    "references": true,
+    "runtest": true
+  },
+  "go.gopath": "{{ .Values.dirs.home }}/go",
+  "go.goroot": "{{ .Values.dirs.home }}/.go",
+  "go.inferGopath": false,
+  "go.useLanguageServer": true,
   "java.codeGeneration.generateComments": true,
   "java.codeGeneration.hashCodeEquals.useJava7Objects": true,
   "java.codeGeneration.useBlocks": true,
@@ -86,12 +107,12 @@
   "quarkus.tools.debug.terminateProcessOnExit": "Always terminate",
   "sonarlint.disableTelemetry": true,
   "sonarlint.ls.javaHome": "{{ .Values.dirs.home }}/.sdkman/candidates/java/current",
-  "spring-boot.ls.java.home": "{{ .Values.dirs.home }}/.sdkman/candidates/java/current",
   "sonarlint.rules": {
     "java:S3252": {
       "level": "off"
     }
   },
+  "spring-boot.ls.java.home": "{{ .Values.dirs.home }}/.sdkman/candidates/java/current",
   "spring.initializr.defaultGroupId": "dev.sqylab",
   "spring.initializr.defaultJavaVersion": "11",
   "spring.initializr.defaultLanguage": "Java",
