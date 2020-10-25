@@ -78,6 +78,11 @@ echo "[ Installing maven ]"
 sdk install maven
 mvn -version
 
+# Install gradle
+echo "[ Installing gradle ]"
+sdk install gradle
+gradle -version
+
 # Set maven settings.xml
 echo "[ Setting maven settings.xml ]"
 mkdir -p $HOME_DIR/.m2

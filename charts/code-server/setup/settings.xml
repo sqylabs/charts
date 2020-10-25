@@ -16,15 +16,5 @@
       <username>{{ .Values.nexus.username }}</username>
       <password>{{ .Values.nexus.password }}</password>
     </server>
-    <server>
-      <id>maven-releases</id>
-      <username>{{ .Values.nexus.username }}</username>
-      <password>{{ .Values.nexus.password }}</password>
-    </server>
-    <server>
-      <id>maven-snapshots</id>
-      <username>{{ .Values.nexus.username }}</username>
-      <password>{{ .Values.nexus.password }}</password>
-    </server>
   </servers>
 </settings>
