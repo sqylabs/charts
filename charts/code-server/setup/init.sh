@@ -13,7 +13,7 @@ echo "[ Installing dependencies ]"
 DEBIAN_FRONTEND=noninteractive \
   apt-get update \
   && apt-get install -qq -y --no-install-recommends \
-     zip unzip wget build-essential libz-dev zlib1g-dev \
+     zip unzip wget build-essential libz-dev zlib1g-dev iputils-ping \
   && rm -rf /tmp/* \
   && rm -rf /var/lib/apt/lists/*
 

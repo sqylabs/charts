@@ -25,3 +25,5 @@ ms-kubernetes-tools,vscode-kubernetes-tools,1.2.1
 editorconfig,editorconfig,0.15.1
 richardwillis,vscode-gradle,3.5.2
 naco-siren,gradle-language,0.2.3
+mtxr,sqltools,0.23.0
+mtxr,sqltools-driver-pg,0.2.0
