@@ -12,6 +12,7 @@
     "editor.tabSize": 2
   },
   "boot-java.change-detection.on": true,
+  "debug.toolBarLocation": "docked",
   "diffEditor.ignoreTrimWhitespace": true,
   "editor.codeActionsOnSave": {
     "source.generate.finalModifiers": true
@@ -76,6 +77,7 @@
   "java.implementationsCodeLens.enabled": true,
   "java.maven.downloadSources": true,
   "java.project.importOnFirstTimeStartup": "automatic",
+  "java.refactor.renameFromFileExplorer": "autoApply",
   "java.referencesCodeLens.enabled": true,
   "java.saveActions.organizeImports": true,
   "java.signatureHelp.enabled": true,
