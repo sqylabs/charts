@@ -42,9 +42,9 @@ ingress:
       proxy_set_header Connection upgrade;
       proxy_set_header Accept-Encoding gzip;
       proxy_set_header Host $host;
-      sub_filter '</head>' '<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=IBM+Plex+Mono&family=Roboto+Mono&family=Source+Code+Pro&display=swap" rel="stylesheet"></head>';
-      sub_filter 'font-src' 'font-src fonts.gstatic.com';
-      sub_filter 'style-src' 'style-src fonts.googleapis.com';
+      sub_filter '</head>' '<link rel="stylesheet" href="https://ghcdn.rawgit.org/ghokun/vscode/main/sfmono.min.css"></head>';
+      sub_filter 'font-src' 'font-src raw.githubusercontent.com';
+      sub_filter 'style-src' 'style-src ghcdn.rawgit.org';
       sub_filter_once on;
   host: code.sqylabs.dev
   tls:
