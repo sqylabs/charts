@@ -37,17 +37,11 @@ fi
 echo "[ Installing extensions ]"
 while IFS=, read -r publisher extension version;
 do
-  echo "[ Checking $publisher.$extension-$version ]"
-  if [ ! -d $(echo $EXTENSIONS_DIR/$publisher.$extension-$version |tr '[:upper:]' '[:lower:]') ]; then
-    echo "[ $publisher.$extension-$version is not installed! ]"
-    download="https://$publisher.gallery.vsassets.io/_apis/public/gallery/publisher/$publisher/extension/$extension/$version/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage"
-    echo "[ Downloading $publisher.$extension-$version.vsix ]"
-    wget $download -q -O $DOWNLOAD_DIR/$publisher.$extension-$version.vsix
-    echo "[ Installing $publisher.$extension-$version ]"
-    code-server --extensions-dir $EXTENSIONS_DIR --install-extension $DOWNLOAD_DIR/$publisher.$extension-$version.vsix
-  else
-    echo "[ $publisher.$extension-$version is already installed! ]"
-  fi
+  download="https://$publisher.gallery.vsassets.io/_apis/public/gallery/publisher/$publisher/extension/$extension/$version/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage"
+  echo "[ Downloading $publisher.$extension-$version.vsix ]"
+  wget $download -q -O $DOWNLOAD_DIR/$publisher.$extension-$version.vsix
+  echo "[ Installing $publisher.$extension-$version ]"
+  code-server --extensions-dir $EXTENSIONS_DIR --install-extension $DOWNLOAD_DIR/$publisher.$extension-$version.vsix
 done < <(grep "" $SETUP_DIR/extensions.csv)
 
 # Install oh-my-bash
