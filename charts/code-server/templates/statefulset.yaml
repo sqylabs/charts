@@ -88,8 +88,6 @@ spec:
                 path: settings.json
               - key: settings.xml
                 path: settings.xml
-              - key: updater.sh
-                path: updater.sh
         - name: init-vol
           configMap:
             name: {{ include "code-server.fullname" . }}

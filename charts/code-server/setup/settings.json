@@ -12,11 +12,10 @@
     "editor.tabSize": 2
   },
   "boot-java.change-detection.on": true,
-  "debug.toolBarLocation": "docked",
-  "diffEditor.ignoreTrimWhitespace": true,
-  "editor.codeActionsOnSave": {
-    "source.generate.finalModifiers": true
-  },
+  "debug.console.fontFamily": "SFMono, Monaco, 'Courier New', monospace",
+  "debug.console.fontSize": 12,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "diffEditor.renderSideBySide": true,
   "editor.cursorSmoothCaretAnimation": true,
   "editor.cursorStyle": "underline",
   "editor.fontFamily": "SFMono, Monaco, 'Courier New', monospace",
@@ -57,6 +56,12 @@
   "java.codeGeneration.generateComments": true,
   "java.codeGeneration.hashCodeEquals.useJava7Objects": true,
   "java.codeGeneration.useBlocks": true,
+  "java.completion.importOrder": [
+    "java",
+    "javax",
+    "org",
+    "com"
+  ],
   "java.configuration.maven.userSettings": "{{ .Values.dirs.home }}/.m2/settings.xml",
   "java.configuration.runtimes": [
     {
@@ -83,6 +88,7 @@
   "java.signatureHelp.enabled": true,
   "javascript.referencesCodeLens.enabled": true,
   "javascript.referencesCodeLens.showOnAllFunctions": true,
+  "markdown.preview.fontSize": 12,
   "maven.executable.path": "{{ .Values.dirs.home }}/.sdkman/candidates/maven/current/bin/mvn",
   "maven.terminal.useJavaHome": true,
   "maven.view": "hierarchical",
@@ -93,7 +99,7 @@
       "template": [
         "All Rights Reserved",
         "",
-        "Copyright (c) <<year>> SQYLABS",
+        "Copyright (c) <<year>> gokhun",
         "",
         "THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR",
         "IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,",
@@ -107,6 +113,10 @@
   ],
   "quarkus.tools.alwaysShowWelcomePage": false,
   "quarkus.tools.debug.terminateProcessOnExit": "Always terminate",
+  "rest-client.fontFamily": "SFMono, Monaco, 'Courier New', monospace",
+  "rest-client.fontSize": 12,
+  "rest-client.fontWeight": "500",
+  "scm.inputFontFamily": "SFMono, Monaco, 'Courier New', monospace",
   "sonarlint.disableTelemetry": true,
   "sonarlint.ls.javaHome": "{{ .Values.dirs.home }}/.sdkman/candidates/java/current",
   "sonarlint.rules": {
@@ -115,10 +125,11 @@
     }
   },
   "spring-boot.ls.java.home": "{{ .Values.dirs.home }}/.sdkman/candidates/java/current",
-  "spring.initializr.defaultGroupId": "dev.sqylab",
+  "spring.initializr.defaultGroupId": "dev.gokhun",
   "spring.initializr.defaultJavaVersion": "11",
   "spring.initializr.defaultLanguage": "Java",
   "spring.initializr.defaultPackaging": "JAR",
+  "terminal.enableAppInsights": false,
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.cursorStyle": "underline",
   "terminal.integrated.fontSize": 12,
@@ -128,7 +139,7 @@
   "typescript.referencesCodeLens.enabled": true,
   "typescript.referencesCodeLens.showOnAllFunctions": true,
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-  "workbench.colorTheme": "GitHub Dark",
+  "workbench.colorTheme": "GitHub Light",
   "workbench.iconTheme": "vscode-icontheme-nomo-dark-macos",
   "workbench.sideBar.location": "left",
   "workbench.startupEditor": "newUntitledFile",
@@ -145,6 +156,7 @@
   ],
   "xml.format.joinCommentLines": true,
   "xml.format.joinContentLines": true,
+  "xml.format.preserveAttributeLineBreaks": true,
   "xml.format.preserveEmptyContent": true,
   "xml.format.splitAttributes": true,
   "xml.java.home": "{{ .Values.dirs.home }}/.sdkman/candidates/java/current"

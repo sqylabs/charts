@@ -1,8 +1,8 @@
 apiVersion: v2
 name: postgres
-version: 0.1.0
+version: 0.2.0
 type: application
-appVersion: 13.0-alpine
+appVersion: 13.1-alpine
 description: A Helm chart for PostgreSQL database
 home: 'https://www.postgresql.org/'
 keywords:
