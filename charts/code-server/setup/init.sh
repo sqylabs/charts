@@ -31,6 +31,7 @@ echo "[ Checking extension download directory ]"
 if [ ! -d "$DOWNLOAD_DIR" ]; then
   echo "[ Creating extension download directory ]"
   mkdir -p $DOWNLOAD_DIR
+  chown -R abc:abc $DOWNLOAD_DIR
 else
   echo "[ Extension download directory already exists ]"
 fi
